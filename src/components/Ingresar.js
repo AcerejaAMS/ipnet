@@ -1,75 +1,38 @@
 import React from 'react';
-
+import './aparienciaIngresar.css';
 
 const Ingresar = () => {
-
-    const cabecera = {
-        display: 'flex',
-        height: '180px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '10px',
-        margin: '10px'
-    };
-
-    const piePagina = {
-        display: 'flex',
-        backgroundColor: '#CC0033',
-        borderColor: '#CC0033',
-        height: '50px',
-        color: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
-
-    const cuerpo = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    }
-
-    const entradaInfo = {
-        display: 'flex',
-        borderRadius: '20px',
-        border: '5px solid #CC0033',
-        width:'600px',
-        height:'600px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin:'50px',
-        flexDirection: 'column'
-    }
-
     const verImg = {
         height: '150px',
         padding: '10px',
     };
 
-    const estiloTitulo = {
-        fontFamily: 'ADLaM Display',
-        fontSize: '100px',
-        color: '#990026',
-        marginLeft: '10px',
-        position: 'relative',
-      };
+    const CambioPagina_CrearCuenta = () =>{
+        window.location.href = 'http://localhost:3000/crear';
+    }
 
-    return(
+    const CambioPagina_OlvidarContrasena = () =>{
+        window.location.href = 'http://localhost:3000/crear';
+    }
+
+    const iniciarSesion = (
         <div>
-            <div style={cabecera}>
+            <div className="cabecera">
                 <img src={`${process.env.PUBLIC_URL}/logoPW.png`} alt='IPN' style={verImg}></img>
-                <div style={estiloTitulo}>IP_Net</div>
+                <div className="estiloTitulo">IP_Net</div>
             </div>
-            <div style={cuerpo}>
-                <div style={entradaInfo}>
-                    <p>Avisos de Privacidad</p>
-                    <p>&nbsp;|&nbsp;</p>
-                    <p>Términos y condiciones</p>
-                    <p>&nbsp;|&nbsp;</p>
-                    <p>Acerca de Nosotros</p>
+            <p className="tituloCuerpo">Iniciar sesión</p>
+            <div className="cuerpo">
+                <div className="entradaInfo">
+                    <input type="text" className="input-style" placeholder="Correo electrónico . . ."/>
+                    <input type="password" className="input-style" placeholder="Contraseña . . ."/>
+                    <button className="button-styleIS">Ingresar</button>
+                    <p className='contrasenaOlvidadada' onClick={CambioPagina_OlvidarContrasena}>¿Olvidaste la Contraseña?</p>
+                    <hr className="linea-estilo" />
+                    <button className="button-styleCC" onClick={CambioPagina_CrearCuenta}>Crear Cuenta Nueva</button>
                 </div>
             </div>
-            <div style={piePagina}>
+            <div className="piePagina">
                 <p>Avisos de Privacidad</p>
                 <p>&nbsp;|&nbsp;</p>
                 <p>Términos y condiciones</p>
@@ -78,6 +41,7 @@ const Ingresar = () => {
             </div>
         </div>
     );
+    return(iniciarSesion);
 };
 
 export default Ingresar;
