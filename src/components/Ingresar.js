@@ -24,7 +24,7 @@ const Ingresar = () => {
             <p className="tituloCuerpo">Iniciar sesión</p>
             <div className="cuerpo">
                 <div className="entradaInfo">
-                    <input type="text" className="input-style" placeholder="Correo electrónico . . ."/>
+                    <input type="text " className="input-style" placeholder="Correo electrónico . . ."/>
                     <input type="password" className="input-style" placeholder="Contraseña . . ."/>
                     <button className="button-styleIS">Ingresar</button>
                     <p className='contrasenaOlvidadada' onClick={CambioPagina_OlvidarContrasena}>¿Olvidaste la Contraseña?</p>

@@ -2,6 +2,7 @@ import React from 'react';
 import './aparienciaPrincipal.css';
 
 const PagPrincipal = () => {
+    /*
     const base = (
         <body>
             <div className="contencionCuerpo">
@@ -57,6 +58,11 @@ const PagPrincipal = () => {
                 </div>
             </div>
         </body>);
+        */
+    
+    const base = (
+        <div></div>
+    );
     return(base);
 };
 
