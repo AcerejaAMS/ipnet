@@ -74,7 +74,7 @@ getFormRegister.addEventListener("sumbit", e => {
                 if(responseEmail == ""){
                     resolve(userEmail);
                 } else {
-                    reject("No puedes usar el Email");
+                    reject('email');
                 }
             }   
         })
@@ -92,7 +92,7 @@ getFormRegister.addEventListener("sumbit", e => {
                 if(responseUsername == ""){
                     return resolve(username);
                 } else {
-                    return reject("No puedes usar el Nombre de Usuario");
+                    return reject('username');
                 }
             }
         })
@@ -111,7 +111,7 @@ getFormRegister.addEventListener("sumbit", e => {
                 if(responsePassword==1){
                     return resolve(password);
                 } else {
-                    return reject('Las contraseñas no coinciden');
+                    return reject('password');
                 }
             }
         })
@@ -142,30 +142,96 @@ getFormRegister.addEventListener("sumbit", e => {
     conEmail()
     .then(data => {
         arrayData(data)
+        changeColorSuccess('emailRegister', 'input');
+        document.getElementById('alertRegisterEmail').innerHTML="";
         return conUser(arrayData);
     }) .then(data => {
+        changeColorSuccess('usernameRegister', 'input');
+        document.getElementById('alertRegisterUsername').innerHTML="";
         arrayData(data)
         return conPassword();
     }) .then(data => {
+        changeColorSuccess('passwordRegister', 'input');
+        changeColorSuccess('passwordRegisterConfirm', 'input');
+        document.getElementById('alertRegisterPassword').innerHTML="";
         arrayData(data)
         addUser(arrayDataParams); // si se activa Todo funciona 
     })
     .catch(data => {
         console.log(data);
-    })
-    .catch(data => {
-        console.log(data);
-    })
-    .catch(data => {
-        console.log(data);
+        if (data == 'email'){
+            changeColorDanger('emailRegister', 'input');
+            document.getElementById('alertRegisterEmail').innerHTML="El correo se encuentra en uso";
+        } else if (data=='user'){
+            changeColorDanger('usernameRegister', 'input');
+            document.getElementById('alertRegisterUsername').innerHTML="El usuario se encuentra en uso";
+        } else {
+            changeColorDanger('passwordRegister', 'input');
+            changeColorDanger('passwordRegisterConfirm', 'input');
+            document.getElementById('alertRegisterPassword').innerHTML="Las contraseñas no coinciden";
+        }
     })
 
     
 });
 
+function changeColorDanger(field, type){
+    getFieldId = document.getElementById(field);
+    if(type == 'input'){
+        getFieldId.style.borderBottom = "1px solid red";
+        getFieldId.style.color = "red";
+        getFieldId.parentNode.children[0].style.color="red";
+        getFieldId.parentNode.parentNode.children[0].children[0].style.color = "red";
+    } 
+}
+
+
+function changeColorSuccess(field, type){
+    getFieldId = document.getElementById(field);
+    if(type == 'input'){
+        getFieldId.style.borderBottom = "1px solid #2ED197";
+        getFieldId.style.color = "#2ED197";
+        getFieldId.parentNode.children[0].style.color="#2ED197";
+        getFieldId.parentNode.parentNode.children[0].children[0].style.color = "#2ED197";
+    } 
+}
+
 var getFormLogin = document.getElementById("form_login");
 getFormLogin.addEventListener('sumbit', e => {
     event.preventDefault();
 
-    let username
+    let username = e.target.elements[0].value;
+    let password = e.target.elements[1].value;
+
+    let loginRequest = new XMLHttpRequest();
+    loginRequest.open('POST', '/redsocial/auth/login');
+    loginRequest.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+    loginRequest.send('user=' + username + '&password=' + password);
+    loginRequest.onload = function(){
+        let responseLogin = JSON.parse(loginRequest.response);
+        if(responseLogin[1] == 'false' ){
+            let alertDanger = `
+                <div class-"form-group">
+                    <div class='alert-danger'>${responseLogin[0]}</div>
+                </div>
+
+            `;
+            changeColorDanger('usernameLogin','input');
+            changeColorDanger('passwordLogin','input');
+            let getContainerAlert = document.getElementById("alertLogin").innerHTML = alertDanger;
+        } else {
+            let alertDanger = `
+                <div class-"form-group">
+                    <div class='alert-success'>${responseLogin[0]}</div>
+                </div>
+            `;
+
+            changeColorSuccess('usernameLogin','input');
+            changeColorSuccess('passwordLogin','input');            
+            let getContainerAlert = document.getElementById("alertLogin").innerHTML = alertDanger;
+            setTimeout(function(){
+                location.reload();
+            }, 3000);
+        }
+    }
 });
