@@ -44,15 +44,15 @@ const Crear = () => {
                     </div>
                     <div className='nombres'>
                         <div className='button-sexo'>
-                            <input type="radio" id='m'/><label for='m'>Mujer</label>
+                            <label><input type="radio" id='m'/>Mujer</label>
                             <div className='circulo'></div>
                         </div>
                         <div className='button-sexo'>
-                            <input type="radio" id='h'/><label for='h'>Hombre</label>
+                            <label><input type="radio"/>Hombre</label>
                             <div className='circulo'></div>
                         </div>
                         <div className='button-sexo'>
-                            <input type="radio" id='p'/><label for='p'>Personal</label>
+                            <label><input type="radio" id='p'/>Personal</label>
                             <div className='circulo'></div>
                         </div>
                             

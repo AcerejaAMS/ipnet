@@ -137,9 +137,7 @@
     border-color: #0084B4;
 }
 
-input[type="radio"] {
-    display: none;
-}
+
 
 .circulo {
     width: 20px;
@@ -173,7 +171,6 @@ input[type="radio"] {
     background-color: white;
     border-color: #0084B4;
 }
-
 
 .buttonCC {
     border-radius: 10px;

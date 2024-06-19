@@ -11,6 +11,10 @@ const Ingresar = () => {
         window.location.href = 'http://localhost:3000/crear';
     }
 
+    const CambioPagina_Principal = () =>{
+        window.location.href = 'http://localhost:3000/principal';
+    }
+
     const CambioPagina_OlvidarContrasena = () =>{
         window.location.href = 'http://localhost:3000/crear';
     }
@@ -26,7 +30,7 @@ const Ingresar = () => {
                 <div className="entradaInfo">
                     <input type="text " className="input-style" placeholder="Correo electrónico . . ."/>
                     <input type="password" className="input-style" placeholder="Contraseña . . ."/>
-                    <button className="button-styleIS">Ingresar</button>
+                    <button className="button-styleIS" onClick={CambioPagina_Principal}>Ingresar</button>
                     <p className='contrasenaOlvidadada' onClick={CambioPagina_OlvidarContrasena}>¿Olvidaste la Contraseña?</p>
                     <hr className="linea-estilo" />
                     <button className="button-styleCC" onClick={CambioPagina_CrearCuenta}>Crear Cuenta Nueva</button>
