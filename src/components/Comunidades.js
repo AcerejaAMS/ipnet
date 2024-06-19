@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Principal = () => {
+const Comunidades = () => {
     const baseInfo = (
         <main>
-            <p>Principal</p>
+            <p>Comunidades</p>
         </main>);
     return(baseInfo);
 };
 
-export default Principal;
+export default Comunidades;
 

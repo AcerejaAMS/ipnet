@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Principal = () => {
+const Perfil = () => {
     const baseInfo = (
         <main>
-            <p>Principal</p>
+            <p>Perfil</p>
         </main>);
     return(baseInfo);
 };
 
-export default Principal;
+export default Perfil;
 

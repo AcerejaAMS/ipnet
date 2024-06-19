@@ -1,98 +1,110 @@
 
 .panelIzquierdo {
-    background-color: white;
-    padding: 20px;
-    width: 25%;
-  }
+  background-color: white;
+  padding: 20px;
+  width: 25%;
+}
   
-  .fa-user {
-    color: #cc0033; /* Color normal */
-    transition: color 0.1s ease; /* Transición suave */
-  }
+.fa-user {
+  color: #cc0033; /* Color normal */
+  transition: color 0.1s ease; /* Transición suave */
+}
   
-  .fa-house {
-    color: #cc0033; /* Color normal */
-    transition: color 0.1s ease; /* Transición suave */
-  }
+.fa-house {
+  color: #cc0033; /* Color normal */
+  transition: color 0.1s ease; /* Transición suave */
+}
   
-  .fa-users {
-    color: #cc0033; /* Color normal */
-    transition: color 0.1s ease; /* Transición suave */
-  }
+.fa-users {
+  color: #cc0033; /* Color normal */
+  transition: color 0.1s ease; /* Transición suave */
+}
   
-  .fa-address-book {
-    color: #cc0033; /* Color normal */
-    transition: color 0.1s ease; /* Transición suave */
-  }
+.fa-address-book {
+  color: #cc0033; /* Color normal */
+  transition: color 0.1s ease; /* Transición suave */
+}
   
-  .fa-newspaper {
-    color: #cc0033; /* Color normal */
-    transition: color 0.1s ease; /* Transición suave */
-  }
-  
-  .contenedorOpcionesRS {
-    background-color: white;
-    border-radius: 20px;
-    border: 1px solid white;
-    color: white;
-    height: 40px;
-    width: 100%;
-    display: flex;
-    margin: 10px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .contenedorOpcionesRS i{
-    background-color:white;
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    font-size: 30px;
-    align-content: center;
-    text-align: center;
-    
-  }
+.fa-newspaper {
+  color: #cc0033; /* Color normal */
+  transition: color 0.1s ease; /* Transición suave */
+}
 
-  .contenedorOpcionesRS div {
-    background-color: #E0E0E0;
-    color: #660019; /* Color de fondo del contenedor */
-    border-radius: 50px;
-    height: 40px;
-    width: 90%;
-    font-size: 18px;
-    align-content: center;
-    text-align: left;
-    padding-left: 10px;
-  }
+.contenedorOpcionesSELEC {
+  background-color: #cc0033;
+  color: white; /* Color de fondo del contenedor */
+  border-radius: 50px;
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  align-content: center;
+  text-align: left;
+  padding-left: 10px;
+}
 
-  .contenedorOpcionesRS:hover .fa-user {
-    color: #0084B4;
-  }
-
-  .contenedorOpcionesRS:hover .fa-house {
-    color: #0084B4;
-  }
-
-  .contenedorOpcionesRS:hover .fa-users {
-    color: #0084B4;
-  }
-
-  .contenedorOpcionesRS:hover .fa-address-book {
-    color: #0084B4;
-  }
-
-  .contenedorOpcionesRS:hover .fa-newspaper {
-    color: #0084B4;
-  }
-
-  .contenedorOpcionesRS:hover div {
-    background-color: #C9F1FF;
-    color: #003399;
-  }
+.contenedorOpcionesRS {
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid white;
+  color: white;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
   
-  @media only screen and (max-width: 700px){
+.contenedorOpcionesRS i{
+  background-color:white;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  font-size: 30px;
+  align-content: center;
+  text-align: center;
+ 
+}
+
+.contenedorOpcionesRS div {
+  background-color: #E0E0E0;
+  color: #660019; /* Color de fondo del contenedor */
+  border-radius: 50px;
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  align-content: center;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.contenedorOpcionesRS:hover .fa-user {
+  color: #0084B4;
+}
+
+.contenedorOpcionesRS:hover .fa-house {
+  color: #0084B4;
+}
+
+.contenedorOpcionesRS:hover .fa-users {
+  color: #0084B4;
+}
+
+.contenedorOpcionesRS:hover .fa-address-book {
+  color: #0084B4;
+}
+
+.contenedorOpcionesRS:hover .fa-newspaper {
+  color: #0084B4;
+}
+
+.contenedorOpcionesRS:hover div {
+  background-color: #C9F1FF;
+  color: #003399;
+}
+  
+@media only screen and (max-width: 700px){
     .panelIzquierdo {
         display: none;
     }

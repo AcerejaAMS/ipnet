@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Principal = () => {
+const Noticias = () => {
     const baseInfo = (
         <main>
-            <p>Principal</p>
+            <p>Noticias</p>
         </main>);
     return(baseInfo);
 };
 
-export default Principal;
+export default Noticias;
 
