@@ -1,7 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './aparienciaCrearCuenta.css';
-import usuarios from '../BB_TEMPORAL/usuarios.json';
-import Swal from 'sweetalert2'
+
+
+function changeColorDanger(field, type){
+    let getFieldId = document.getElementById(field);
+    if(type === 'input'){
+        getFieldId.style.borderBottom = "1px solid red";
+        getFieldId.style.color = "red";
+        getFieldId.parentNode.children[0].style.color="red";
+        getFieldId.parentNode.parentNode.children[0].children[0].style.color = "red";
+    } 
+}
+
+
+function changeColorSuccess(field, type){
+    let getFieldId = document.getElementById(field);
+    if(type === 'input'){
+        getFieldId.style.borderBottom = "1px solid #2ED197";
+        getFieldId.style.color = "#2ED197";
+        getFieldId.parentNode.children[0].style.color="#2ED197";
+        getFieldId.parentNode.parentNode.children[0].children[0].style.color = "#2ED197";
+    } 
+}
+
 
 const Crear = () => {
     const verImg = {
@@ -9,113 +30,153 @@ const Crear = () => {
         padding: '10px',
     };
 
-    const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [contraInic, setContraInic] = useState('');
-    const [contraConf, setContraConf] = useState('');
-    let [fechaNacimiento, setFechaNacimiento] = useState('');
-    let [plantel, setPlantel] = useState('');
-    let [carrera, setCarrera] = useState('');
-    let sexo;
-    
-    const eleccionSexo = (opc) =>{
-        switch(opc){
-            case "M":
-                sexo='mujer'
-                break;
-            case "H":
-                sexo='hombre'
-                break;
-            default:
-                sexo='personal'
-                break;
-        }
+    const CambioPagina = () => {
+        window.location.href = 'http://localhost:3000/';
     };
 
+    useEffect(() => {
+        const inputs = document.querySelectorAll(".form-control");
 
-    const Creacion = (e) =>{
-        e.preventDefault();
-        if(nombre && apellido && correo && contraInic && contraConf){
-            let temp;
-            for(let step = 0; step < usuarios.length; step++){
-                temp=usuarios[step];
-                if(temp.correo === correo){
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'El correo ya esta registrado',
-                        confirmButtonText: 'Aceptar',
-                        confirmButtonColor: '#0084B4',
-                        showCancelButton: false,
-                        width: '400px',
-                    });
-                    return;
+        inputs.forEach(input => {
+            input.addEventListener("blur", (e) => {
+                const label = e.target.previousElementSibling;
+                if (label.classList.contains('animateLabel') && e.target.value === "") {
+                    label.classList.remove('animateLabel');
                 }
-            }
-
-            if(!plantel){
-                plantel = "Desconocido";
-            }
-
-            if(!carrera){
-                carrera = "Desconocido";
-            }
-
-            if(!fechaNacimiento){
-                fechaNacimiento  = "0000-00-00";
-            }
-
-            if(!sexo){
-                sexo = "personal";
-            }
-
-            let fechaRegistro;
-            let fechaActual = new Date();
-            fechaRegistro = `${fechaActual.getFullYear()}-${fechaActual.getMonth()}-${fechaActual.getDay()}`;
-
-
-
-            usuarios.push({
-                "ID_usuario": usuarios.length + 1,
-                "apellido": apellido,
-                "correo": correo,
-                "contrasenia": contraConf,
-                "plantel": plantel,
-                "carrera": carrera,
-                "sexo": sexo,
-                "fecha_nacimiento": fechaNacimiento,
-                "fecha_registro": fechaRegistro,
-                "lista_amigos": [],
-                "lista_comunidades": [],
-                "lista_publicaciones": []
             });
 
-            /*En realidad no lo crea */
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Perfecto!!, Se ha registrado correctamente",
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#0084B4',
-                showCancelButton: false,
-              });
-        } else {
-            Swal.fire({
-                title: 'Error',
-                text: 'Faltan datos obligatorios',
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#0084B4',
-                showCancelButton: false,
-                width: '400px',
-              });
+            input.addEventListener("focus", (e) => {
+                const label = e.target.previousElementSibling;
+                if (!label.classList.contains('animateLabel')) {
+                    label.classList.add('animateLabel');
+                }
+            });
+        });
+
+        // Cleanup event listeners on component unmount
+        return () => {
+            inputs.forEach(input => {
+                input.removeEventListener("blur", (e) => {
+                    const label = e.target.previousElementSibling;
+                    if (label.classList.contains('animateLabel') && e.target.value === "") {
+                        label.classList.remove('animateLabel');
+                    }
+                });
+
+                input.removeEventListener("focus", (e) => {
+                    const label = e.target.previousElementSibling;
+                    if (!label.classList.contains('animateLabel')) {
+                        label.classList.add('animateLabel');
+                    }
+                });
+            });
+        };
+    }, []);
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        const formElements = e.target.elements;
+        const userEmail = formElements[0].value;
+        const username = formElements[1].value;
+        const password = formElements[2].value;
+        const passwordConfirm = formElements[3].value;
+
+        try {
+            await conEmail(userEmail);
+            changeColorSuccess('emailRegister', 'input');
+            document.getElementById('alertRegisterEmail').innerHTML = "";
+            
+            await conUser(username);
+            changeColorSuccess('usernameRegister', 'input');
+            document.getElementById('alertRegisterUsername').innerHTML = "";
+            
+            await conPassword(password, passwordConfirm);
+            changeColorSuccess('passwordRegister', 'input');
+            changeColorSuccess('passwordRegisterConfirm', 'input');
+            document.getElementById('alertRegisterPassword').innerHTML = "";
+            
+            addUser([userEmail, username, password]);
+        } catch (error) {
+            console.log(error);
+            if (error === 'email') {
+                changeColorDanger('emailRegister', 'input');
+                document.getElementById('alertRegisterEmail').innerHTML = "El correo se encuentra en uso";
+            } else if (error === 'username') {
+                changeColorDanger('usernameRegister', 'input');
+                document.getElementById('alertRegisterUsername').innerHTML = "El usuario se encuentra en uso";
+            } else {
+                changeColorDanger('passwordRegister', 'input');
+                changeColorDanger('passwordRegisterConfirm', 'input');
+                document.getElementById('alertRegisterPassword').innerHTML = "Las contraseñas no coinciden";
+            }
         }
     };
 
-    const CambioPagina = () =>{
-        window.location.href = 'http://localhost:3000/';
-    }
+    const conEmail = (email) => {
+        return new Promise((resolve, reject) => {
+            let requestEmail = new XMLHttpRequest();
+            requestEmail.open('POST', '/auth/confirmEmail');
+            requestEmail.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            requestEmail.responseType = 'text';
+            requestEmail.send('email=' + email);
+            requestEmail.onload = () => {
+                if (requestEmail.response === "") {
+                    resolve(email);
+                } else {
+                    reject('email');
+                }
+            };
+        });
+    };
 
-    const crearNuevaCuenta = (
+    const conUser = (username) => {
+        return new Promise((resolve, reject) => {
+            let requestUsername = new XMLHttpRequest();
+            requestUsername.open('POST', '/redsocial/auth/confirmUsername');
+            requestUsername.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            requestUsername.send('user=' + username);
+            requestUsername.onload = () => {
+                if (requestUsername.response === "") {
+                    resolve(username);
+                } else {
+                    reject('username');
+                }
+            };
+        });
+    };
+
+    const conPassword = (password, passwordConfirm) => {
+        return new Promise((resolve, reject) => {
+            let requestPassword = new XMLHttpRequest();
+            requestPassword.open('POST', '/redsocial/auth/confirmPassword');
+            requestPassword.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            requestPassword.send('password=' + password + '&passwordConfirm=' + passwordConfirm);
+            requestPassword.onload = () => {
+                if (requestPassword.response === 1) {
+                    resolve(password);
+                } else {
+                    reject('password');
+                }
+            };
+        });
+    };
+
+    const addUser = (data) => {
+        let requestAddUser = new XMLHttpRequest();
+        requestAddUser.open('POST', '/redsocial/auth/addUser');
+        requestAddUser.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        requestAddUser.send('email=' + data[0] + '&user=' + data[1] + '&password=' + data[2]);
+        requestAddUser.onload = () => {
+            if (requestAddUser.response === 1) {
+                document.getElementById("registerForm").reset();
+                document.getElementById("form_register").style.display = "none";
+                document.getElementById("form_login").style.display = "block";
+            }
+        };
+    };
+
+    return (
         <div>
             <div className="cabecera">
                 <img src={`${process.env.PUBLIC_URL}/logoPW.png`} alt='IPN' style={verImg}></img>
@@ -123,84 +184,75 @@ const Crear = () => {
             </div>
             <p className="tituloCuerpo">¡¡Regístrate!!</p>
             <div className="cuerpo">
-                <form className='tamanio' onSubmit={Creacion}>
-                    <div className="entradaInfo">
-                        <p className='opcionalobligatoria'>Información Obligatoria</p>
-                        <hr className="linea-estilo" />
-                        <div className='nombres'>
-                            <input
-                                type="text" 
-                                className="input-style1" 
-                                placeholder="Nombre. . ."
-                                value={nombre}
-                                onChange={(e) => setNombre(e.target.value)}/>
-                            <input 
-                                type="text" 
-                                className="input-style1" 
-                                placeholder="Apellido . . ."
-                                value={apellido}
-                                onChange={(e) => setApellido(e.target.value)}/>
+                <div className="entradaInfo">
+                    <p className='opcionalobligatoria'>Información Obligatoria</p>
+                    <hr className="linea-estilo" />
+                    <div className='nombres'>
+                        <div className="form-container">
+                            <label className="labelInput">Nombre. . .</label>
+                            <input type="text" className="input-style1 form-control" />
                         </div>
-                        <input 
-                            type="text" 
-                            className="input-style" 
-                            placeholder="Correo Institucional IPN . . ."
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}/>
-                        <input 
-                            type="password" 
-                            className="input-style" 
-                            placeholder="Contraseña . . ."
-                            value={contraInic}
-                            onChange={(e) => setContraInic(e.target.value)}/>
-                        <input 
-                            type="password" 
-                            className="input-style" 
-                            placeholder="Confirmar contraseña . . ."
-                            value={contraConf}
-                            onChange={(e) => setContraConf(e.target.value)}/>
-                    </div>
-                    <div className="entradaInfo">
-                        <p className='opcionalobligatoria'>Información Opcional</p>
-                        <hr className="linea-estilo" />
-                        <input 
-                            type="date" 
-                            className="input-style" 
-                            placeholder="Fecha de nacimiento . . ."
-                            value={fechaNacimiento}
-                            onChange={(e) => setFechaNacimiento(e.target.value)}/>
-                        <div className='nombres'>
-                            <input 
-                                type="text" 
-                                className="input-style1" 
-                                placeholder="Plantel. . ."
-                                value={plantel}
-                                onChange={(e) => setPlantel(e.target.value)}/>
-                            <input 
-                                type="text" 
-                                className="input-style1" 
-                                placeholder="Carrera . . ."
-                                value={carrera}
-                                onChange={(e) => setCarrera(e.target.value)}/>
-                        </div>
-                        <div className='nombres'>
-                            <div className='button-sexo' onClick={() => eleccionSexo("M")}>
-                                <label><input type="radio"/>Mujer</label>
-                                <div className='circulo'></div>
-                            </div>
-                            <div className='button-sexo' onClick={() => eleccionSexo("H")}>
-                                <label><input type="radio"/>Hombre</label>
-                                <div className='circulo'></div>
-                            </div>
-                            <div className='button-sexo' onClick={() => eleccionSexo("P")}>
-                                <label><input type="radio"/>Personal</label>
-                                <div className='circulo'></div>
-                            </div>
-                                
+                        <div className="form-container">
+                            <label className="labelInput">Apellido . . .</label>
+                            <input type="text" className="input-style1 form-control" />
                         </div>
                     </div>
-                    <button className="buttonCC">Crear Cuenta</button>
-                </form>    
+                    <div className="form-container">
+                        <label className="labelInput">Correo Institucional IPN . . .</label>
+                        <input type="text" className="input-style form-control" />
+                    </div>
+                    <div className="form-container">
+                        <label className="labelInput">Contraseña . . .</label>
+                        <input type="password" className="input-style form-control" />
+                    </div>
+                    <div className="form-container">
+                        <label className="labelInput">Confirmar contraseña . . .</label>
+                        <input type="password" className="input-style form-control" />
+                    </div>
+                </div>
+                <div className="entradaInfo">
+                    <p className='opcionalobligatoria'>Información Opcional</p>
+                    <hr className="linea-estilo" />
+                    <div className='nombres'>
+                        <div className="form-container">
+                            <label className="labelInput">Dia. . .</label>
+                            <input type="text" className="input-style2 form-control" />
+                        </div>
+                        <div className="form-container">
+                            <label className="labelInput">Mes . . .</label>
+                            <input type="text" className="input-style2 form-control" />
+                        </div>
+                        <div className="form-container">
+                            <label className="labelInput">Año . . .</label>
+                            <input type="text" className="input-style2 form-control" />
+                        </div>
+                    </div>
+                    <div className='nombres'>
+                        <div className="form-container">
+                            <label className="labelInput">Plantel. . .</label>
+                            <input type="text" className="input-style1 form-control" />
+                        </div>
+                        <div className="form-container">
+                            <label className="labelInput">Carrera . . .</label>
+                            <input type="text" className="input-style1 form-control" />
+                        </div>
+                    </div>
+                    <div className='nombres'>
+                        <div className='button-sexo'>
+                            <label><input type="radio" id='m'/>Mujer</label>
+                            <div className='circulo'></div>
+                        </div>
+                        <div className='button-sexo'>
+                            <label><input type="radio"/>Hombre</label>
+                            <div className='circulo'></div>
+                        </div>
+                        <div className='button-sexo'>
+                            <label><input type="radio" id='p'/>Personal</label>
+                            <div className='circulo'></div>
+                        </div>
+                    </div>
+                </div>
+                <button className="buttonCC">Crear Cuenta</button>
                 <hr className="lineaBotonCC" />
                 <p className='cancelar' onClick={CambioPagina}>Cancelar</p>
             </div>
@@ -213,8 +265,9 @@ const Crear = () => {
             </div>
         </div>
     );
-
-    return(crearNuevaCuenta);
 };
+
+export default Crear;
+
 
 export default Crear;
