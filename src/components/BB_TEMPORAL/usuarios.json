@@ -1,0 +1,72 @@
+[
+  {
+    "ID_usuario": "1",
+    "apellido": "Pérez",
+    "correo": "juan@ejemplo.com",
+    "contrasenia": "contraseña123",
+    "plantel": "Plantel A",
+    "carrera": "Ingeniería en Informática",
+    "sexo": "masculino",
+    "fecha_nacimiento": "1990-05-15T00:00:00.000+00:00",
+    "fecha_registro": "2024-05-08T03:14:49.749+00:00",
+    "lista_amigos": [],
+    "lista_comunidades": [],
+    "lista_publicaciones": []
+  },
+  {
+    "ID_usuario": "2",
+    "apellido": "López",
+    "correo": "maria@ejemplo.com",
+    "contrasenia": "password456",
+    "plantel": "Plantel B",
+    "carrera": "Medicina",
+    "sexo": "femenino",
+    "fecha_nacimiento": "1995-08-20T00:00:00.000+00:00",
+    "fecha_registro": "2024-04-20T09:30:00.000+00:00",
+    "lista_amigos": [],
+    "lista_comunidades": [],
+    "lista_publicaciones": []
+  },
+  {
+    "ID_usuario": "3",
+    "apellido": "González",
+    "correo": "luis@ejemplo.com",
+    "contrasenia": "clave789",
+    "plantel": "Plantel C",
+    "carrera": "Arquitectura",
+    "sexo": "masculino",
+    "fecha_nacimiento": "1988-12-10T00:00:00.000+00:00",
+    "fecha_registro": "2024-05-01T15:45:00.000+00:00",
+    "lista_amigos": [],
+    "lista_comunidades": [],
+    "lista_publicaciones": []
+  },
+  {
+    "ID_usuario": "4",
+    "apellido": "Martínez",
+    "correo": "ana@ejemplo.com",
+    "contrasenia": "secreto321",
+    "plantel": "Plantel A",
+    "carrera": "Psicología",
+    "sexo": "femenino",
+    "fecha_nacimiento": "1992-03-25T00:00:00.000+00:00",
+    "fecha_registro": "2024-06-05T12:00:00.000+00:00",
+    "lista_amigos": [],
+    "lista_comunidades": [],
+    "lista_publicaciones": []
+  },
+  {
+    "ID_usuario": "5",
+    "apellido": "Rodríguez",
+    "correo": "carlos@ejemplo.com",
+    "contrasenia": "secreto123",
+    "plantel": "Plantel B",
+    "carrera": "Derecho",
+    "sexo": "masculino",
+    "fecha_nacimiento": "1993-07-18T00:00:00.000+00:00",
+    "fecha_registro": "2024-05-15T18:00:00.000+00:00",
+    "lista_amigos": [],
+    "lista_comunidades": [],
+    "lista_publicaciones": []
+  }
+]      

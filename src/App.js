@@ -3,17 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Ingresar from './components/Ingresar';
 import Crear from './components/CrearCuenta';
 import BarraIzq from './components/BarraIzquierda';
-
 import Perfil from './components/Perfil';
 import Principal from './components/Principal';
 import Comunidades from './components/Comunidades';
 import Amigos from './components/Amigos';
 import Noticias from './components/Noticias';
-
 import Barra from './components/BarraHerramientas';
 
 const App = () => {
-
+  
   const cuerpoInfo = {
     display: 'flex'
   };
