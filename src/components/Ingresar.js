@@ -37,7 +37,6 @@ const Ingresar = () => {
         let llaveAceptacion_Contrasena=false;
         let indiceBusqueda=-1;
         
-        console.log(usuarios)
         let temp;
 
         for(let step = 0; step < usuarios.length; step++){
@@ -61,7 +60,7 @@ const Ingresar = () => {
                 title: 'Error',
                 text: 'Correo o Contraseña erroneos',
                 confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#0084B4',
                 showCancelButton: false,
                 width: '400px',
               });
