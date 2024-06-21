@@ -268,6 +268,3 @@ const Crear = () => {
 };
 
 export default Crear;
-
-
-export default Crear;
