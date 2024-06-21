@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './aparienciaCrearCuenta.css';
-import usuarios from './BB_TEMPORAL/usuarios.json';
+import usuarios from '../BB_TEMPORAL/usuarios.json';
 import Swal from 'sweetalert2'
 
 const Crear = () => {

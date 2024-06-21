@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './aparienciaIngresar.css';
-import usuarios from './BB_TEMPORAL/usuarios.json';
+import usuarios from '../BB_TEMPORAL/usuarios.json';
 import Swal from 'sweetalert2'
 
 const Ingresar = () => {

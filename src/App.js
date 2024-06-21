@@ -1,15 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Ingresar from './components/Ingresar';
-import Crear from './components/CrearCuenta';
-import BarraIzq from './components/BarraIzquierda';
-import Perfil from './components/Perfil';
-import Principal from './components/Principal';
-import Comunidades from './components/Comunidades';
-import Amigos from './components/Amigos';
-import Noticias from './components/Noticias';
-import Barra from './components/BarraHerramientas';
+import AuthProvider from "./provider/authProvider";
+import Routes from "./routes";
 
+/*
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Ingresar from './components/Modelos/Ingresar';
+import Crear from './components/Modelos/CrearCuenta';
+import BarraIzq from './components/Modelos/BarraIzquierda';
+import Perfil from './components/Modelos/Perfil';
+import Principal from './components/Modelos/Principal';
+import Comunidades from './components/Modelos/Comunidades';
+import Amigos from './components/Modelos/Amigos';
+import Noticias from './components/Modelos/Noticias';
+import Barra from './components/Modelos/BarraHerramientas';
+*/
 const App = () => {
   
   const cuerpoInfo = {
@@ -17,6 +21,10 @@ const App = () => {
   };
 
   return (
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+    /*
     <Router>
       <Routes>
         <Route path="/" element={<Ingresar />} />
@@ -27,7 +35,7 @@ const App = () => {
         <Route path="/amigos" element={[<Barra/>,<div style={cuerpoInfo}><BarraIzq/><Amigos/></div>]} />
         <Route path="/noticias" element={[<Barra/>,<div style={cuerpoInfo}><BarraIzq/><Noticias/></div>]} />
       </Routes>
-    </Router>
+    </Router>*/
   );
 };
 
