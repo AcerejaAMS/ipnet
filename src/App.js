@@ -13,7 +13,8 @@ import Barra from './components/Modelos/BarraHerramientas';
 const App = () => {
   
   const cuerpoInfo = {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'space-between',
   };
 
   return (

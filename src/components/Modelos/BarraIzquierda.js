@@ -4,7 +4,7 @@ import './aparienciaBarraIzquierda.css';
 const BarraIzq = () => {
     const Acto = (boton) => {
         switch (boton) {
-            case 'MP':
+            default:
                 window.location.href = 'http://localhost:3000/perfil';
                 break;
             case 'PP':
