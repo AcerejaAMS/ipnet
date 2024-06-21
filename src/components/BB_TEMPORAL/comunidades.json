@@ -1,0 +1,75 @@
+[
+    {
+      "comunidad_ID": "C_1",
+      "nombre_comunidad": "Comunidad de Viajes",
+      "descripcion": "Comunidad para amantes de los viajes",
+      "administrador": 1,
+      "participantes": [1, 3, 7],
+      "fecha_creacion": "2024-05-06",
+      "publicaciones": ["P_1", "P_9"]
+    },
+    {
+      "comunidad_ID": "C_2",
+      "nombre_comunidad": "Fotografía Urbana",
+      "descripcion": "Comunidad para fotógrafos urbanos",
+      "administrador": 2,
+      "participantes": [2, 4, 6],
+      "fecha_creacion": "2024-05-07",
+      "publicaciones": ["P_2", "P_10"]
+    },
+    {
+      "comunidad_ID": "C_3",
+      "nombre_comunidad": "Videos de Aventura",
+      "descripcion": "Comunidad para amantes de las aventuras en video",
+      "administrador": 3,
+      "participantes": [3, 5, 8],
+      "fecha_creacion": "2024-05-08",
+      "publicaciones": ["P_3", "P_11"]
+    },
+    {
+      "comunidad_ID": "C_4",
+      "nombre_comunidad": "Comida y Cultura",
+      "descripcion": "Comunidad para entusiastas de la gastronomía y cultura culinaria",
+      "administrador": 4,
+      "participantes": [4, 2, 6],
+      "fecha_creacion": "2024-05-09",
+      "publicaciones": ["P_4", "P_12"]
+    },
+    {
+      "comunidad_ID": "C_5",
+      "nombre_comunidad": "Fotografía Natural",
+      "descripcion": "Comunidad para amantes de la fotografía natural",
+      "administrador": 5,
+      "participantes": [5, 1, 3],
+      "fecha_creacion": "2024-05-10",
+      "publicaciones": ["P_5", "P_15"]
+    },
+    {
+      "comunidad_ID": "C_6",
+      "nombre_comunidad": "Eventos Locales",
+      "descripcion": "Comunidad para eventos y actividades locales",
+      "administrador": 6,
+      "participantes": [6, 4, 7],
+      "fecha_creacion": "2024-05-11",
+      "publicaciones": ["P_6", "P_13"]
+    },
+    {
+      "comunidad_ID": "C_7",
+      "nombre_comunidad": "Educación y Tecnología",
+      "descripcion": "Comunidad para discusiones sobre educación y tecnología",
+      "administrador": 7,
+      "participantes": [7, 1, 5],
+      "fecha_creacion": "2024-05-12",
+      "publicaciones": ["P_7", "P_14"]
+    },
+    {
+      "comunidad_ID": "C_8",
+      "nombre_comunidad": "Literatura y Poesía",
+      "descripcion": "Comunidad para amantes de la literatura y la poesía",
+      "administrador": 8,
+      "participantes": [8, 2, 4],
+      "fecha_creacion": "2024-05-13",
+      "publicaciones": ["P_8"]
+    }
+  ]
+  
