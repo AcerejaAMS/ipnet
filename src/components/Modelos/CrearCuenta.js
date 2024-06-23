@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './aparienciaCrearCuenta.css';
+import Swal from 'sweetalert2'
 
 
 function changeColorDanger(field, type){
@@ -175,14 +176,23 @@ const Crear = () => {
             }
         };
     };
-
+    const juanito= () =>{
+        Swal.fire({
+            title: '¿Easter Egg?',
+            text: 'Hola juanito',
+            showCancelButton: false,
+            confirmButtonText: 'Hola',
+            confirmButtonColor: '#0084B4',
+            width: '400px',
+          });
+    }
     return (
         <div>
             <div className="cabecera">
                 <img src={`${process.env.PUBLIC_URL}/logoPW.png`} alt='IPN' style={verImg}></img>
                 <div className="estiloTitulo">IP_Net</div>
             </div>
-            <p className="tituloCuerpo">¡¡Regístrate!!</p>
+            <p className="tituloCuerpo" onClick={juanito}>¡¡Regístrate!!</p>
             <div className="cuerpo">
                 <div className="entradaInfo">
                     <p className='opcionalobligatoria'>Información Obligatoria</p>
